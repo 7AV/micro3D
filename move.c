@@ -1,29 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_move.c                                      :+:      :+:    :+:   */
+/*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 13:12:11 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 11:16:43 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 12:39:33 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-void	ft_valid_move(t_data *data, t_plr *plr, int flag, float offset)
-{
-	if (flag)
-	{
-		if (!(data->map[(int)plr->y / SCALE][(int)plr->x / SCALE] != '1'
-		&& data->map[(int)plr->y / SCALE][(int)plr->x / SCALE] != '2'))
-			plr->x += offset * MOVE_SPEED;
-	}
-	else if (!(data->map[(int)plr->y / SCALE][(int)plr->x / SCALE] != '1'
-			&& data->map[(int)plr->y / SCALE][(int)plr->x / SCALE] != '2'))
-		plr->y += offset * MOVE_SPEED;
-}
 
 void	ft_w_press(t_data *data)
 {

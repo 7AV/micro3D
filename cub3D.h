@@ -115,5 +115,6 @@ int		ft_put_radar(t_data *data);
 void	ft_set_player(char **map, t_data *data, t_plr *plr);
 void	ft_map_set(char *argv, t_data *data);
 void	ft_read_input(char *argv, t_data *data);
+void	ft_valid_move(t_data *data, t_plr *plr, int flag, float offset);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_set.c                                       :+:      :+:    :+:   */
+/*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 17:30:04 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/21 12:29:49 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 12:40:45 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	ft_set_player(char **map, t_data *data, t_plr *plr)
 				data->plr->x = (x + 0.5) * SCALE;
 				data->plr->y = (y + 0.5) * SCALE;
 				data->plr->fov = PLAYER_FOV_2 * 2;
-				map[y][x] == 'N' ? data->plr->pov = - M_PI / 2 : 0;
+				map[y][x] == 'N' ? data->plr->pov = -M_PI / 2 : 0;
 				map[y][x] == 'S' ? data->plr->pov = M_PI / 2 : 0;
 				map[y][x] == 'W' ? data->plr->pov = M_PI : 0;
 			}
