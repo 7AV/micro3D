@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 11:51:55 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 11:57:20 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 12:09:50 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int		ft_field_of_view_put(t_data *data)
 	int		column;
 	float	column_angle;
 	t_ray	ray;
-	int i = 0;
 	
 	ft_init_save(data);
 	data->ray = &ray;

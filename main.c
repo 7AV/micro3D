@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 10:31:57 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/22 12:02:46 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 12:09:16 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_init_str(t_data *data, t_win *win, t_skin *skin, t_text *text)
 	data->skin = skin;
 }
 
-void	ft_init_win(t_data *data, t_win *win)
+void	ft_init_win(t_win *win)
 {
 	win->mlx = mlx_init();
 	win->win = mlx_new_window(win->mlx, win->width, win->height, "cub3D");
@@ -72,12 +72,12 @@ int		main(int argc, char **argv)
 	t_plr		plr;
 	t_text		text[4];
 
+	(void)argc;
 	ft_init_str(&data, &win, &skin, &text[0]);
 	ft_read_input(argv[1], &data);
-	ft_init_win(&data, &win);
+	ft_init_win(&win);
 	ft_set_player(data.map, &data, &plr);
 	ft_set_sprite(&data, data.map);
-	// ft_calc_sprites(&data);
 	data.save = NULL;
 	ft_set_textures(&data, data.skin->text);
 	mlx_loop_hook(win.mlx, ft_render_next_frame, &data);

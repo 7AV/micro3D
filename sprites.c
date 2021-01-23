@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprites_put.c                                      :+:      :+:    :+:   */
+/*   sprites.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 16:30:07 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 11:59:22 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 12:10:36 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_print_sprdist(t_data *data)
 	}
 }
 
-void	ft_swap_sprites(t_data *data, t_spr *a, t_spr *b)
+void	ft_swap_sprites(t_spr *a, t_spr *b)
 {
 	t_spr	*tmp;
 
@@ -60,7 +60,7 @@ void	ft_sort_sprites(t_data *data)
 		{
 			if (tmp->dist < tmp->next->dist)
 			{
-				ft_swap_sprites(data, tmp, tmp->next);
+				ft_swap_sprites(tmp, tmp->next);
 				swap = 1;
 			}
 			else

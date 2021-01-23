@@ -6,7 +6,7 @@
 #    By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/15 13:57:34 by sbudding          #+#    #+#              #
-#    Updated: 2021/01/23 12:03:48 by sbudding         ###   ########.fr        #
+#    Updated: 2021/01/23 12:08:05 by sbudding         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,9 @@ $(GNL):
 $(LIBMLX):
 	$(MAKE) -C ./mlx
 	cp mlx/libmlx.a .
+
+%.o:%.c cub3d.h
+	gcc $(FLAGS) -I mlx -c $< -o $@
 
 run: $(NAME)
 	./$(NAME) map.cub
