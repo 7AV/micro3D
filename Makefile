@@ -6,7 +6,7 @@
 #    By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/15 13:57:34 by sbudding          #+#    #+#              #
-#    Updated: 2021/01/23 12:08:05 by sbudding         ###   ########.fr        #
+#    Updated: 2021/01/23 12:13:28 by sbudding         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,10 @@ $(LIBMLX):
 
 run: $(NAME)
 	./$(NAME) map.cub
+
+git:
+	git add .
+	git commit -m save
 
 clean:
 		$(MAKE) clean -C ./libft
