@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 13:12:11 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/22 16:19:45 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 11:16:43 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int		ft_button_press(int butt, t_data *data)
 	butt == 1 ? ft_s_press(data) : 0;
 	butt == 0 ? ft_a_press(data) : 0;
 	butt == 2 ? ft_d_press(data) : 0;
-	butt == 123 ? data->plr->pov -= 0.05 : 0;
-	butt == 124 ? data->plr->pov += 0.05 : 0;
+	butt == 123 ? data->plr->pov -= 0.08 : 0;
+	butt == 124 ? data->plr->pov += 0.08 : 0;
 	butt == 53 ? exit(0) : 0;
 	return (0);
 }

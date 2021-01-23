@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 19:55:47 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/21 15:57:16 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 11:18:27 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,12 @@ void	ft_colour_options(char **opt, t_data *data)
 	&& ft_atoi(tmp[2]) >= 0 && ft_atoi(tmp[2]) <= 255)
 	{
 		if (*opt[0] == 'F')
-			data->skin->flo_color = (ft_atoi(tmp[0]) << 16) +
-			(ft_atoi(tmp[1]) << 8) + ft_atoi(tmp[2]);
+			data->skin->flo_color = (ft_atoi(tmp[0]) * 256 * 256) +
+			(ft_atoi(tmp[1]) * 256) + ft_atoi(tmp[2]);
 		if (*opt[0] == 'C')
-			data->skin->ceil_color = (ft_atoi(tmp[0]) << 16) +
-			(ft_atoi(tmp[1]) << 8) + ft_atoi(tmp[2]);
+			data->skin->ceil_color = (ft_atoi(tmp[0]) * 256 * 256) +
+			(ft_atoi(tmp[1]) * 256) + ft_atoi(tmp[2]);
 	}
-	// else
-	// 	error(ER_COLOR);
 }
 
 void	ft_texture_options(char **opt, t_data *data, t_skin *skin)

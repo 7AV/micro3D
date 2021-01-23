@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 11:51:55 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/22 12:02:56 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 11:57:20 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_text_mapping(t_data *data, t_text **text, int column, int y)
 	ft_my_pixel_put(data, column, y, color);
 }
 
-void	ft_column_put(t_data *data, int column)
+void	ft_put_column(t_data *data, int column)
 {
 	float	ceiling;
 	float	floor;
@@ -99,9 +99,9 @@ int		ft_field_of_view_put(t_data *data)
 		ft_ray_cast(data, angle);
 		data->save[column] = ray.dist;
 		ray.dist *= cos(angle);
-		ft_column_put(data, column);
+		ft_put_column(data, column);
 		column++;
 	}
-	ft_calc_sprites(data);
+	ft_sprites(data);
 	return (0);
 }

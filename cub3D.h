@@ -100,7 +100,7 @@ typedef struct	s_data
 void	ft_floor(t_data *data);
 float	ft_norm_angle(float ang);
 t_spr	*ft_sprnew(float x, float y);
-void	ft_calc_sprites(t_data *data);
+void	ft_sprites(t_data *data);
 void	ft_spr_put(t_data *data);
 void	ft_set_sprite(t_data *data, char **map);
 int		ft_valid_point(t_data *data, float y, float x);

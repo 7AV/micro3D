@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 16:30:07 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 09:57:01 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 11:59:22 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	ft_sort_sprites(t_data *data)
 			{
 				ft_swap_sprites(data, tmp, tmp->next);
 				swap = 1;
-
 			}
 			else
 				tmp = tmp->next;
@@ -70,54 +69,56 @@ void	ft_sort_sprites(t_data *data)
 	}
 }
 
-void	ft_draw_sprites(t_data *data, t_point *point, float coef, t_spr *spr)
+void	ft_put_sprites(t_data *data, t_spr *spr, t_point *pnt, float scale)
 {
-	char	*col;
+	char	*color;
 	int		x;
 	int		y;
 
-	y = -1;
-	while (++y < spr->height)
+	y = 0;
+	while (y < spr->height)
 	{
 		x = 0;
-		while (++x < spr->height)
+		while (x < spr->height)
 		{
-			if (point->x + y < data->win->width && point->x + y >= 0
-			&& point->y + x >= 0 && point->y + x < data->win->height
-			&& data->save[point->x + y] > spr->dist)
+			if (pnt->x + y < data->win->width && pnt->x + y >= 0
+			&& pnt->y + x >= 0 && pnt->y + x < data->win->height
+			&& data->save[pnt->x + y] > spr->dist)
 			{
-				col = data->skin->text[0]->addr + (((int)(x * coef) * data->skin->text[0]
-				->line_len) + ((int)(y * coef) * (data->skin->text[0]->bpp / 8)));
-				if ((*(unsigned int *)col & 0xFFFFFF) != 0 && point->y + x >
-			0 && point->x + y > 0 && point->x + y < data->win->width
-				&& point->y + x < data->win->height)
-					ft_my_pixel_put(data, point->x + y, point->y + x,
-						*(unsigned int *)col);
+				color = (data->skin->text[0]->addr
+				+ (((int)(x * scale) * data->skin->text[0] ->line_len)
+				+ ((int)(y * scale) * (data->skin->text[0]->bpp / 8))));
+				if (pnt->x + y < data->win->width && pnt->y + x < data->win->height
+					&& pnt->y + x > 0 && pnt->x + y > 0
+					&& (*(unsigned int *)color & 0x00FFFFFF) != 0)
+					ft_my_pixel_put(data, pnt->x + y, pnt->y + x, *(unsigned int *)color);
 			}
-			
+			x++;
 		}
+		y++;
 	}
 }
 
-void	ft_calc_sprites_2(t_data *data, t_spr *spr)
+void	ft_sprite_options(t_data *data, t_spr *spr)
 {
-	int		proj_plane;
-	float	coef;
-	t_point	point;
+	t_point		pnt;
+	int			depth;
+	float		scale;
 
 	spr->dir = spr->dir - ft_norm_angle(data->plr->pov);
 	if ((spr->dir > -PLAYER_FOV_2) && (spr->dir < PLAYER_FOV_2))
 	{
-		proj_plane = data->win->width / (2 * tan(PLAYER_FOV_2));
-		spr->height = fabs((SCALE * proj_plane) / (spr->dist * cos(spr->dir))) / 1.2;
-		coef = (float)(SCALE) / spr->height;
-		point.x = spr->dir * (data->win->width / 2) / (PLAYER_FOV_2) + data->win->width / 2 - spr->height / 2;
-		point.y = data->win->height / 2 - spr->height / 3;
-		ft_draw_sprites(data, &point, coef, spr);
+		depth = data->win->width / (2 * tan(PLAYER_FOV_2));
+		spr->height = (SCALE * depth) / (spr->dist * cos(spr->dir)) / 1.2;
+		scale = (float)SCALE / spr->height;
+		pnt.x = spr->dir * (data->win->width / 2) / (PLAYER_FOV_2) + data->win->width / 2 - spr->height / 2;
+		pnt.y = data->win->height / 2 - spr->height / 3;
+		ft_put_sprites
+		(data, spr, &pnt, scale);
 	}
 }
 
-void	ft_calc_sprites(t_data *data)
+void	ft_sprites(t_data *data)
 {
 	t_spr	*tmp;
 
@@ -134,7 +135,7 @@ void	ft_calc_sprites(t_data *data)
 	tmp = data->spr;
 	while (tmp != NULL)
 	{
-		ft_calc_sprites_2(data, tmp);
+		ft_sprite_options(data, tmp);
 		tmp = tmp->next;
 	}
 }

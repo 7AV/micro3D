@@ -6,7 +6,7 @@
 #    By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/15 13:57:34 by sbudding          #+#    #+#              #
-#    Updated: 2021/01/23 10:49:48 by sbudding         ###   ########.fr        #
+#    Updated: 2021/01/23 12:01:32 by sbudding         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,14 +21,14 @@ GNL = gnl.a
 LIBMLX = libmlx.a
 
 SRC = img_build.c \
-	input_parse.c \
+	parse.c \
 	main.c \
-	player_move.c \
+	move.c \
 	fov_put.c \
-	player_set.c \
+	player.c \
 	radar.c \
-	ray_cast.c \
-	sprites_put.c
+	raycast.c \
+	sprites.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -62,11 +62,7 @@ fclean: clean
 		$(MAKE) fclean -C ./libft
 		$(MAKE) clean -C ./gnl
 		$(MAKE) clean -C ./mlx
-		rm -rf libft.a
-		rm -rf gnl.a
-		rm -rf libmlx.a
-		rm -rf $(NAME)
-		rm -rf a.out
+		rm -rf $(NAME) libft.a gnl.a libmlx.a
 
 re: fclean all
 
