@@ -6,7 +6,7 @@
 #    By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/15 13:57:34 by sbudding          #+#    #+#              #
-#    Updated: 2021/01/23 12:13:28 by sbudding         ###   ########.fr        #
+#    Updated: 2021/01/23 12:31:03 by sbudding         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,9 @@ git:
 	git add .
 	git commit -m save
 
+norm:
+	@norminette $(SRC) cub3d.h libft/*.c libft/*.h gnl/*.c gnl/*.h 
+
 clean:
 		$(MAKE) clean -C ./libft
 		$(MAKE) clean -C ./gnl
@@ -73,5 +76,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: bonus clean fclean all refov_put.c
 
