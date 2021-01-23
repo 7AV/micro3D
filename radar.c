@@ -6,11 +6,11 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 13:32:06 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 12:51:49 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 14:17:12 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 void	ft_scale(t_data *data, int x, int y)
 {

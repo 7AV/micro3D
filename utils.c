@@ -6,11 +6,11 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 13:38:00 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 12:48:52 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 14:17:22 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 void	ft_print_sprdist(t_data *data)
 {

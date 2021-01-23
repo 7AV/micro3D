@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 12:53:23 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 12:56:50 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 14:00:45 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,20 @@
 # define RAD_Y 1
 # define PLAYER_FOV_2 M_PI / 2.7 / 2
 # define MOVE_SPEED 100
+
+# define ER_BAD_ARGS	0	//неверный аргумент при запуске main
+# define ER_FD			0	//открытие файла
+# define ER_MALLOC		0	//маллок
+# define ER_BAD_OPT		0	//неверные ключи в инпуте
+# define ER_DUP_RES		0	//совпадение разрешений
+# define ER_PATH		0	//путь к текстурам
+# define ER_BAD_TEXT	0	//текстуры не открываются
+# define ER_DUP_TEXT	0	//повтор текстур
+# define ER_DUP_COLOR	0	//совпадение цветов
+# define ER_BAD_COLOR	0	//неверный формат цветов
+# define ER_MAP			0	//невалидная карта
+# define ER_PLR			0	//ошибки игрока
+# define ER_SCRSHT		0	//ошибка скриншота
 
 typedef struct		s_point
 {

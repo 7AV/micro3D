@@ -6,11 +6,11 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 16:30:07 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 12:51:38 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 14:17:19 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 void	ft_swap_sprites(t_spr *a, t_spr *b)
 {

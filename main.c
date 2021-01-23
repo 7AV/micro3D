@@ -6,11 +6,11 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 10:31:57 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 12:09:16 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 14:16:54 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 void	ft_set_textures(t_data *data, t_text **text)
 {

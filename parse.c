@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_parse.c                                      :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 19:55:47 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 11:18:27 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 14:17:04 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 void	ft_colour_options(char **opt, t_data *data)
 {
@@ -46,7 +46,7 @@ void	ft_texture_options(char **opt, t_data *data, t_skin *skin)
 	ft_colour_options(opt, data);
 }
 
-void		ft_window_options(char **opt, t_win *win)
+void	ft_window_options(char **opt, t_win *win)
 {
 	if (ft_strncmp(opt[0], "R", 1) == 0)
 	{
@@ -57,7 +57,7 @@ void		ft_window_options(char **opt, t_win *win)
 	}
 }
 
-void		ft_input_parse(t_data *data)
+void	ft_input_parse(t_data *data)
 {
 	char	**tmp;
 	int		ind;
@@ -91,7 +91,7 @@ void		ft_input_parse(t_data *data)
 	}
 }
 
-void		ft_input_build(t_list **input_head, t_data *data)
+void	ft_input_build(t_list **input_head, t_data *data)
 {
 	int		list_count;
 	int		ind;
@@ -109,7 +109,7 @@ void		ft_input_build(t_list **input_head, t_data *data)
 	}
 }
 
-void		ft_read_input(char *argv, t_data *data)
+void	ft_read_input(char *argv, t_data *data)
 {
 	int		fd;
 	char	*line;

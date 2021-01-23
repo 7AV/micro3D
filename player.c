@@ -6,11 +6,11 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 17:30:04 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 12:40:45 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 14:17:08 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 t_spr	*ft_sprnew(float x, float y)
 {

@@ -6,7 +6,7 @@
 #    By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/15 13:57:34 by sbudding          #+#    #+#              #
-#    Updated: 2021/01/23 12:31:03 by sbudding         ###   ########.fr        #
+#    Updated: 2021/01/23 14:16:25 by sbudding         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ $(LIBMLX):
 	gcc $(FLAGS) -I mlx -c $< -o $@
 
 run: $(NAME)
-	./$(NAME) map.cub
+	./$(NAME) maps/map.cub
 
 git:
 	git add .

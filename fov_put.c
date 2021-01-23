@@ -6,11 +6,11 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 11:51:55 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 12:38:05 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 14:16:49 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 int		ft_shadow(t_data *data, int color)
 {
 	int		r;

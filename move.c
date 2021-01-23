@@ -6,11 +6,11 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 13:12:11 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 12:39:33 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 14:17:00 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 void	ft_w_press(t_data *data)
 {
