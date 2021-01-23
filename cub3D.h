@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 12:53:23 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 14:00:45 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 17:01:46 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,18 @@
 # define PLAYER_FOV_2 M_PI / 2.7 / 2
 # define MOVE_SPEED 100
 
-# define ER_BAD_ARGS	0	//неверный аргумент при запуске main
-# define ER_FD			0	//открытие файла
-# define ER_MALLOC		0	//маллок
-# define ER_BAD_OPT		0	//неверные ключи в инпуте
-# define ER_DUP_RES		0	//совпадение разрешений
-# define ER_PATH		0	//путь к текстурам
-# define ER_BAD_TEXT	0	//текстуры не открываются
-# define ER_DUP_TEXT	0	//повтор текстур
-# define ER_DUP_COLOR	0	//совпадение цветов
-# define ER_BAD_COLOR	0	//неверный формат цветов
-# define ER_MAP			0	//невалидная карта
-# define ER_PLR			0	//ошибки игрока
-# define ER_SCRSHT		0	//ошибка скриншота
+# define ER_ARG			0	//неверный аргумент при запуске main
+# define ER_FD			1	//открытие файла
+# define ER_MALLOC		2	//маллок
+# define ER_BAD_OPT		3	//неверные ключи в инпуте
+# define ER_BAD_RES		4	//совпадение разрешений
+# define ER_PATH		5	//путь к текстурам
+# define ER_BAD_TEXT	6	//текстуры не открываются
+# define ER_DUP_TEXT	7	//повтор текстур
+# define ER_COLOR		8	//дурной тон
+# define ER_MAP			9	//невалидная карта
+# define ER_PLR			10	//ошибки игрока
+# define ER_SCRNSHT		11	//ошибка скриншота
 
 typedef struct		s_point
 {
@@ -115,6 +114,7 @@ typedef struct		s_data
 	char			**input;
 	char			**map;
 	int				map_height;
+	int				scrn;
 	t_spr			*spr;
 	t_skin			*skin;
 	t_win			*win;
@@ -123,6 +123,7 @@ typedef struct		s_data
 	float			*save;
 }					t_data;
 
+void				ft_error(char code);
 void				ft_floor(t_data *data);
 float				ft_norm_angle(float ang);
 t_spr				*ft_sprnew(float x, float y);

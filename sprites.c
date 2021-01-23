@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 16:30:07 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 14:17:19 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 16:35:04 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	ft_sprite_options(t_data *data, t_spr *spr)
 	if ((spr->dir > -PLAYER_FOV_2) && (spr->dir < PLAYER_FOV_2))
 	{
 		depth = data->win->width / (2 * tan(PLAYER_FOV_2));
-		spr->height = (SCALE * depth) / (spr->dist * cos(spr->dir)) / 1.2;
+		spr->height = (SCALE * depth) / (spr->dist * cos(spr->dir) / 1.2);
 		scale = (float)SCALE / spr->height;
 		pnt.x = spr->dir * (data->win->width / 2) / (PLAYER_FOV_2)
 		+ data->win->width / 2 - spr->height / 2;

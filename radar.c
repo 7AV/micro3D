@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 13:32:06 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 14:17:12 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 16:26:02 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int		ft_put_wall(t_data *data, char **map)
 		{
 			if ((map[y])[x] == '1')
 				ft_scale(data, x + RAD_X, y + RAD_Y);
-			else
+			else if ((map[y])[x] != ' ')
 				ft_scale_2(data, x + RAD_X, y + RAD_Y);
 			x++;
 		}

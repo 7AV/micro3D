@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 10:31:57 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 14:16:54 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 16:54:18 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_init_str(t_data *data, t_win *win, t_skin *skin, t_text *text)
 	win->width = -1;
 	win->height = -1;
 	ind = -1;
-	while (ind++ < 5)
+	while (++ind < 5)
 		skin->text_path[ind] = NULL;
 	while (ind-- > -1)
 		skin->text[ind] = &text[ind];
@@ -53,6 +53,7 @@ void	ft_init_str(t_data *data, t_win *win, t_skin *skin, t_text *text)
 	skin->flo_color = -1;
 	data->win = win;
 	data->skin = skin;
+	data->map_height = 0;
 }
 
 void	ft_init_win(t_win *win)
@@ -72,7 +73,8 @@ int		main(int argc, char **argv)
 	t_plr		plr;
 	t_text		text[4];
 
-	(void)argc;
+	data.scrn = (argc == 3 && !ft_strncmp(argv[2], "--save", 6)) ? 1 : 0;
+	argc < 2 || argc > 3 || (argc == 3 && !data.scrn) ? ft_error(ER_ARG) : 0;
 	ft_init_str(&data, &win, &skin, &text[0]);
 	ft_read_input(argv[1], &data);
 	ft_init_win(&win);

@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 19:55:47 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 14:17:04 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/23 17:07:56 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_colour_options(char **opt, t_data *data)
 	char	**tmp;
 
 	tmp = ft_split(opt[1], ',');
+	// if (!tmp[0] || !tmp[1] || !tmp[2])
+	// 	ft_error(ER_COLOR);
 	if (tmp[0] && tmp[1] && tmp[2]
 	&& ft_atoi(tmp[0]) >= 0 && ft_atoi(tmp[0]) <= 255
 	&& ft_atoi(tmp[1]) >= 0 && ft_atoi(tmp[1]) <= 255
@@ -29,20 +31,37 @@ void	ft_colour_options(char **opt, t_data *data)
 			data->skin->ceil_color = (ft_atoi(tmp[0]) * 256 * 256) +
 			(ft_atoi(tmp[1]) * 256) + ft_atoi(tmp[2]);
 	}
+	// else
+	// 	ft_error(ER_COLOR);
 }
 
 void	ft_texture_options(char **opt, t_data *data, t_skin *skin)
 {
 	if (ft_strncmp(opt[0], "S", 2) == 0)
+	{
+		(skin->text_path[0] != NULL) ? ft_error(ER_BAD_OPT) : 0;
 		skin->text_path[0] = ft_strdup(opt[1]);
+	}
 	else if (ft_strncmp(opt[0], "NO", 2) == 0)
+	{
+		(skin->text_path[1] != NULL) ? ft_error(ER_BAD_OPT) : 0;
 		skin->text_path[1] = ft_strdup(opt[1]);
+	}
 	else if (ft_strncmp(opt[0], "SO", 2) == 0)
+	{
+		(skin->text_path[2] != NULL) ? ft_error(ER_BAD_OPT) : 0;
 		skin->text_path[2] = ft_strdup(opt[1]);
+	}
 	else if (ft_strncmp(opt[0], "WE", 2) == 0)
+	{
+		(skin->text_path[3] != NULL) ? ft_error(ER_BAD_OPT) : 0;
 		skin->text_path[3] = ft_strdup(opt[1]);
+	}
 	else if (ft_strncmp(opt[0], "EA", 2) == 0)
+	{
+		// (skin->text_path[4] != NULL) ? ft_error(ER_BAD_OPT) : 0;
 		skin->text_path[4] = ft_strdup(opt[1]);
+	}
 	ft_colour_options(opt, data);
 }
 
@@ -50,11 +69,13 @@ void	ft_window_options(char **opt, t_win *win)
 {
 	if (ft_strncmp(opt[0], "R", 1) == 0)
 	{
-		win->width = (ft_atoi(opt[1]) > 2560) ?
-		2560 : ft_atoi(opt[1]);
-		win->height = (ft_atoi(opt[2]) > 1440) ?
-		1440 : ft_atoi(opt[2]);
+		(win->height != -1) && (win->width != -1) ? ft_error(ER_BAD_OPT) : 0;
+		win->width = (ft_atoi(opt[1]) > 2560) ? 2560 : ft_atoi(opt[1]);
+		win->height = (ft_atoi(opt[2]) > 1440) ? 1440 : ft_atoi(opt[2]);
+		(win->height <= 200) && (win->width <= 200) ? ft_error(ER_BAD_RES) : 0;
 	}
+	else
+		ft_error(ER_BAD_OPT);
 }
 
 void	ft_input_parse(t_data *data)
@@ -64,11 +85,10 @@ void	ft_input_parse(t_data *data)
 	int		count;
 	int		flag;
 
-	ind = 0;
+	ind = -1;
 	count = 0;
 	flag = 0;
-	data->map_height = 0;
-	while (data->input[ind])
+	while (data->input[++ind])
 	{
 		tmp = ft_split(data->input[ind], ' ');
 		while (tmp[count])
@@ -87,7 +107,6 @@ void	ft_input_parse(t_data *data)
 			data->map_height += 1;
 		}
 		count = 0;
-		ind++;
 	}
 }
 
@@ -99,7 +118,8 @@ void	ft_input_build(t_list **input_head, t_data *data)
 
 	ind = 0;
 	list_count = ft_lstsize(*input_head);
-	data->input = ft_calloc(list_count + 1, sizeof(char *));
+	!(data->input = ft_calloc(list_count + 1, sizeof(char *))) ?
+	ft_error(ER_MALLOC) : 0;
 	tmp = *input_head;
 	while (tmp)
 	{
@@ -115,13 +135,11 @@ void	ft_read_input(char *argv, t_data *data)
 	char	*line;
 	t_list	*input_head;
 
-	fd = open(argv, O_RDONLY);
+	(fd = open(argv, O_RDONLY)) <= 0 ? ft_error(ER_FD) : 0;
 	line = NULL;
 	input_head = NULL;
-	while (get_next_line(fd, &line))
-	{
+	while (get_next_line(fd, &line) > 0)
 		ft_lstadd_back(&input_head, ft_lstnew(line));
-	}
 	ft_lstadd_back(&input_head, ft_lstnew(line));
 	close(fd);
 	ft_input_build(&input_head, data);

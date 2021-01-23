@@ -6,7 +6,7 @@
 #    By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/15 13:57:34 by sbudding          #+#    #+#              #
-#    Updated: 2021/01/23 14:16:25 by sbudding         ###   ########.fr        #
+#    Updated: 2021/01/23 15:27:20 by sbudding         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRC = utils.c \
 	player.c \
 	radar.c \
 	raycast.c \
-	sprites.c
+	sprites.c \
+	error.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -54,6 +55,9 @@ $(LIBMLX):
 
 run: $(NAME)
 	./$(NAME) maps/map.cub
+
+scrn: $(NAME)
+	./$(NAME) maps/map.cub --save
 
 git:
 	git add .
