@@ -6,7 +6,7 @@
 #    By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/15 13:57:34 by sbudding          #+#    #+#              #
-#    Updated: 2021/01/23 12:01:32 by sbudding         ###   ########.fr        #
+#    Updated: 2021/01/23 12:03:48 by sbudding         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ GNL = gnl.a
 
 LIBMLX = libmlx.a
 
-SRC = img_build.c \
+SRC = utils.c \
 	parse.c \
 	main.c \
 	move.c \
