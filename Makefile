@@ -6,7 +6,7 @@
 #    By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/15 13:57:34 by sbudding          #+#    #+#              #
-#    Updated: 2021/01/23 15:27:20 by sbudding         ###   ########.fr        #
+#    Updated: 2021/01/24 08:49:20 by sbudding         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,12 +24,12 @@ SRC = utils.c \
 	parse.c \
 	main.c \
 	move.c \
-	fov_put.c \
+	render.c \
 	player.c \
 	radar.c \
 	raycast.c \
 	sprites.c \
-	error.c
+	errors.c
 
 OBJ = $(SRC:.c=.o)
 

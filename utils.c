@@ -6,23 +6,11 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 13:38:00 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 14:17:22 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/24 09:53:14 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	ft_print_sprdist(t_data *data)
-{
-	t_spr	*tmp;
-
-	tmp = data->spr;
-	while (tmp)
-	{
-		printf("%5.d | %d -> %d\n", tmp->x, tmp->y, tmp->dist);
-		tmp = tmp->next;
-	}
-}
 
 float	ft_norm_angle(float ang)
 {
@@ -35,7 +23,7 @@ float	ft_norm_angle(float ang)
 	return (ang);
 }
 
-void	ft_valid_move(t_data *data, t_plr *plr, int flag, float offset)
+void	ft_move_check(t_data *data, t_plr *plr, int flag, float offset)
 {
 	if (flag)
 	{

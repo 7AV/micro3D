@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 10:31:57 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 16:54:18 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/24 10:38:20 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_set_textures(t_data *data, t_text **text)
 	while (ind < 5)
 	{
 		text[ind]->img = mlx_xpm_file_to_image(data->win->mlx,
-		data->skin->text_path[ind], &text[ind]->width,
+		data->skin->path[ind], &text[ind]->width,
 		&text[ind]->height);
 		text[ind]->addr = mlx_get_data_addr(text[ind]->img,
 		&text[ind]->bpp, &text[ind]->line_len, &text[ind]->end);
@@ -32,6 +32,7 @@ int		ft_render_next_frame(t_data *data)
 {
 	ft_field_of_view_put(data);
 	RADAR ? ft_put_radar(data) : 0;
+	// (data->scrn) ? ft_screenshot(data) : 0;
 	mlx_put_image_to_window(data->win->mlx, data->win->win,
 		data->win->img, 0, 0);
 	mlx_do_sync(data->win->mlx);
@@ -46,8 +47,8 @@ void	ft_init_str(t_data *data, t_win *win, t_skin *skin, t_text *text)
 	win->height = -1;
 	ind = -1;
 	while (++ind < 5)
-		skin->text_path[ind] = NULL;
-	while (ind-- > -1)
+		skin->path[ind] = NULL;
+	while (ind-- > 0)
 		skin->text[ind] = &text[ind];
 	skin->ceil_color = -1;
 	skin->flo_color = -1;
@@ -85,4 +86,7 @@ int		main(int argc, char **argv)
 	mlx_loop_hook(win.mlx, ft_render_next_frame, &data);
 	mlx_hook(win.win, 2, (1L << 0), &ft_button_press, &data);
 	mlx_loop(win.mlx);
+	// ft_free();
+	free(data.input);
+	return (0);
 }

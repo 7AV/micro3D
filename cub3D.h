@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 12:53:23 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 17:01:46 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/24 10:29:48 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define ER_PATH		5	//путь к текстурам
 # define ER_BAD_TEXT	6	//текстуры не открываются
 # define ER_DUP_TEXT	7	//повтор текстур
-# define ER_COLOR		8	//дурной тон
+# define ER_COLOR		8	//дурной тонr
 # define ER_MAP			9	//невалидная карта
 # define ER_PLR			10	//ошибки игрока
 # define ER_SCRNSHT		11	//ошибка скриншота
@@ -94,7 +94,7 @@ typedef struct		s_skin
 {
 	int				ceil_color;
 	int				flo_color;
-	char			*text_path[5];
+	char			*path[5];
 	t_text			*text[5];
 
 }					t_skin;
@@ -142,7 +142,7 @@ int					ft_put_radar(t_data *data);
 void				ft_set_player(char **map, t_data *data, t_plr *plr);
 void				ft_map_set(char *argv, t_data *data);
 void				ft_read_input(char *argv, t_data *data);
-void				ft_valid_move(t_data *data, t_plr *plr, int flag,
+void				ft_move_check(t_data *data, t_plr *plr, int flag,
 float offset);
 
 #endif

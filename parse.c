@@ -6,19 +6,31 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 19:55:47 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 17:07:56 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/24 10:38:50 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_colour_options(char **opt, t_data *data)
+// void	ft_path_check(t_data *data)
+// {
+	
+// }
+
+void	ft_opt_check(t_data *data)
+{
+	((data->skin->ceil_color == -1) || (data->skin->flo_color == -1)
+	|| data->win->width == -1 || data->win->height == -1
+	|| !data->skin->path[1] || !data->skin->path[2]
+	|| !data->skin->path[3] || !data->skin->path[4]
+	|| !data->skin->path[0]) ? ft_error(ER_BAD_OPT) : 0;
+}
+
+void	ft_color_calc(char **opt, t_data *data)
 {
 	char	**tmp;
 
 	tmp = ft_split(opt[1], ',');
-	// if (!tmp[0] || !tmp[1] || !tmp[2])
-	// 	ft_error(ER_COLOR);
 	if (tmp[0] && tmp[1] && tmp[2]
 	&& ft_atoi(tmp[0]) >= 0 && ft_atoi(tmp[0]) <= 255
 	&& ft_atoi(tmp[1]) >= 0 && ft_atoi(tmp[1]) <= 255
@@ -31,38 +43,53 @@ void	ft_colour_options(char **opt, t_data *data)
 			data->skin->ceil_color = (ft_atoi(tmp[0]) * 256 * 256) +
 			(ft_atoi(tmp[1]) * 256) + ft_atoi(tmp[2]);
 	}
-	// else
-	// 	ft_error(ER_COLOR);
+	else
+		ft_error(ER_COLOR);
+	free(tmp);
+}
+
+void	ft_color_options(char **opt, t_data *data)
+{
+	if (ft_strncmp(opt[0], "F", 2) == 0)
+	{
+		(data->skin->flo_color != -1) ? ft_error(ER_BAD_OPT) : 0;
+		ft_color_calc(opt, data);
+	}
+	else if (ft_strncmp(opt[0], "C", 2) == 0)
+	{
+		(data->skin->ceil_color != -1) ? ft_error(ER_BAD_OPT) : 0;
+		ft_color_calc(opt, data);
+	}
 }
 
 void	ft_texture_options(char **opt, t_data *data, t_skin *skin)
 {
 	if (ft_strncmp(opt[0], "S", 2) == 0)
 	{
-		(skin->text_path[0] != NULL) ? ft_error(ER_BAD_OPT) : 0;
-		skin->text_path[0] = ft_strdup(opt[1]);
+		(skin->path[0] != NULL) ? ft_error(ER_BAD_OPT) : 0;
+		skin->path[0] = ft_strdup(opt[1]);
 	}
 	else if (ft_strncmp(opt[0], "NO", 2) == 0)
 	{
-		(skin->text_path[1] != NULL) ? ft_error(ER_BAD_OPT) : 0;
-		skin->text_path[1] = ft_strdup(opt[1]);
+		(skin->path[1] != NULL) ? ft_error(ER_BAD_OPT) : 0;
+		skin->path[1] = ft_strdup(opt[1]);
 	}
 	else if (ft_strncmp(opt[0], "SO", 2) == 0)
 	{
-		(skin->text_path[2] != NULL) ? ft_error(ER_BAD_OPT) : 0;
-		skin->text_path[2] = ft_strdup(opt[1]);
+		(skin->path[2] != NULL) ? ft_error(ER_BAD_OPT) : 0;
+		skin->path[2] = ft_strdup(opt[1]);
 	}
 	else if (ft_strncmp(opt[0], "WE", 2) == 0)
 	{
-		(skin->text_path[3] != NULL) ? ft_error(ER_BAD_OPT) : 0;
-		skin->text_path[3] = ft_strdup(opt[1]);
+		(skin->path[3] != NULL) ? ft_error(ER_BAD_OPT) : 0;
+		skin->path[3] = ft_strdup(opt[1]);
 	}
 	else if (ft_strncmp(opt[0], "EA", 2) == 0)
 	{
-		// (skin->text_path[4] != NULL) ? ft_error(ER_BAD_OPT) : 0;
-		skin->text_path[4] = ft_strdup(opt[1]);
+		(skin->path[4] != NULL) ? ft_error(ER_BAD_OPT) : 0;
+		skin->path[4] = ft_strdup(opt[1]);
 	}
-	ft_colour_options(opt, data);
+	ft_color_options(opt, data);
 }
 
 void	ft_window_options(char **opt, t_win *win)
@@ -106,8 +133,13 @@ void	ft_input_parse(t_data *data)
 			}
 			data->map_height += 1;
 		}
+		else if (count == 1 && tmp[0][0])
+			ft_error(ER_MAP);
 		count = 0;
+		free(tmp);
 	}
+	ft_opt_check(data);
+	// ft_path_check(data);
 }
 
 void	ft_input_build(t_list **input_head, t_data *data)

@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 13:12:11 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 14:17:00 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/24 09:53:57 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,33 @@
 void	ft_w_press(t_data *data)
 {
 	data->plr->x += cos(data->plr->pov) * MOVE_SPEED;
-	ft_valid_move(data, data->plr, 1, -cos(data->plr->pov));
+	ft_move_check(data, data->plr, 1, -cos(data->plr->pov));
 	data->plr->y += sin(data->plr->pov) * MOVE_SPEED;
-	ft_valid_move(data, data->plr, 0, -sin(data->plr->pov));
+	ft_move_check(data, data->plr, 0, -sin(data->plr->pov));
 }
 
 void	ft_s_press(t_data *data)
 {
 	data->plr->x -= cos(data->plr->pov) * MOVE_SPEED;
-	ft_valid_move(data, data->plr, 1, cos(data->plr->pov));
+	ft_move_check(data, data->plr, 1, cos(data->plr->pov));
 	data->plr->y -= sin(data->plr->pov) * MOVE_SPEED;
-	ft_valid_move(data, data->plr, 0, sin(data->plr->pov));
+	ft_move_check(data, data->plr, 0, sin(data->plr->pov));
 }
 
 void	ft_a_press(t_data *data)
 {
 	data->plr->x += sin(data->plr->pov) * MOVE_SPEED;
-	ft_valid_move(data, data->plr, 1, -sin(data->plr->pov));
+	ft_move_check(data, data->plr, 1, -sin(data->plr->pov));
 	data->plr->y -= cos(data->plr->pov) * MOVE_SPEED;
-	ft_valid_move(data, data->plr, 0, cos(data->plr->pov));
+	ft_move_check(data, data->plr, 0, cos(data->plr->pov));
 }
 
 void	ft_d_press(t_data *data)
 {
 	data->plr->x -= sin(data->plr->pov) * MOVE_SPEED;
-	ft_valid_move(data, data->plr, 1, sin(data->plr->pov));
+	ft_move_check(data, data->plr, 1, sin(data->plr->pov));
 	data->plr->y += cos(data->plr->pov) * MOVE_SPEED;
-	ft_valid_move(data, data->plr, 0, -cos(data->plr->pov));
+	ft_move_check(data, data->plr, 0, -cos(data->plr->pov));
 }
 
 int		ft_button_press(int butt, t_data *data)
