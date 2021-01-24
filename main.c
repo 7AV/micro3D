@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 10:31:57 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/24 10:38:20 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/24 15:28:03 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int		main(int argc, char **argv)
 	data.scrn = (argc == 3 && !ft_strncmp(argv[2], "--save", 6)) ? 1 : 0;
 	argc < 2 || argc > 3 || (argc == 3 && !data.scrn) ? ft_error(ER_ARG) : 0;
 	ft_init_str(&data, &win, &skin, &text[0]);
+	data.plr = &plr;
 	ft_read_input(argv[1], &data);
 	ft_init_win(&win);
 	ft_set_player(data.map, &data, &plr);

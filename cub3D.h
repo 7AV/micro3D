@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 12:53:23 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/24 10:29:48 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/24 16:40:19 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ typedef struct		s_data
 	char			**input;
 	char			**map;
 	int				map_height;
+	int				map_width;
 	int				scrn;
 	t_spr			*spr;
 	t_skin			*skin;

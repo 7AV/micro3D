@@ -6,16 +6,73 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 19:55:47 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/24 10:38:50 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/24 16:45:30 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// void	ft_path_check(t_data *data)
+// void	ft_map_check(int y, int x, t_data *data)
 // {
-	
+// 	// (void)data;
+// 	if (data->map[y][x] == ' ')
+// 		ft_error(ER_MAP);
+// 	else
+// 		if (data->map[y][x] != '1')
+// 		{
+// 			ft_map_check(y, x + 1, data);
+// 			ft_map_check(y - 1, x, data);
+// 		}
 // }
+
+void		ft_map_check(t_data *data)
+{
+	int		x;
+	int		y;
+
+	x = 0;
+	y = 0;
+	data->map_width = ft_strlen(data->map[0]);
+	while (y < data->map_height)
+	{
+		while (x < data->map_width )
+		{
+			if (data->map[y][x] != '1' && y == 0)
+				ft_error(ER_MAP);
+			else if (data->map[y][x] != '1' && y == data->map_height - 1)
+				ft_error(ER_MAP);
+			else if (data->map[y][x] != '1' && x == 0)
+				ft_error(ER_MAP);
+			else if (data->map[y][x] != '1' && x == data->map_width - 1)
+				ft_error(ER_MAP);
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}
+
+void	ft_path_check(t_skin *skin)
+{
+	int		ind;
+	int		fd;
+	int		x;
+
+	ind = -1;
+	while (++ind < 5)
+		(fd = open(skin->path[ind], O_RDONLY)) < 0 ?
+		ft_error(ER_FD) : close(fd);
+	x = -1;
+	ind = -1;
+	while (x++ < 5)
+	{
+		while (ind++ < 5)
+			if (ft_strncmp(skin->path[x], skin->path[ind],
+			ft_strlen(skin->path[x])) == 0 && (ind != x))
+				ft_error(ER_DUP_TEXT);
+		ind = -1;
+	}
+}
 
 void	ft_opt_check(t_data *data)
 {
@@ -138,8 +195,9 @@ void	ft_input_parse(t_data *data)
 		count = 0;
 		free(tmp);
 	}
+	ft_map_check(data);
 	ft_opt_check(data);
-	// ft_path_check(data);
+	ft_path_check(data->skin);
 }
 
 void	ft_input_build(t_list **input_head, t_data *data)

@@ -6,7 +6,7 @@
 #    By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/15 13:57:34 by sbudding          #+#    #+#              #
-#    Updated: 2021/01/24 08:49:20 by sbudding         ###   ########.fr        #
+#    Updated: 2021/01/24 11:58:44 by sbudding         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,16 +20,16 @@ GNL = gnl.a
 
 LIBMLX = libmlx.a
 
-SRC = utils.c \
+SRC = main.c \
 	parse.c \
-	main.c \
-	move.c \
-	render.c \
 	player.c \
 	radar.c \
+	move.c \
+	render.c \
 	raycast.c \
 	sprites.c \
-	errors.c
+	errors.c \
+	utils.c
 
 OBJ = $(SRC:.c=.o)
 
