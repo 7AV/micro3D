@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 10:31:57 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/24 15:28:03 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/25 20:34:32 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		ft_render_next_frame(t_data *data)
 {
 	ft_field_of_view_put(data);
 	RADAR ? ft_put_radar(data) : 0;
-	// (data->scrn) ? ft_screenshot(data) : 0;
+	(data->scrn) ? ft_screenshot(data) : 0;
 	mlx_put_image_to_window(data->win->mlx, data->win->win,
 		data->win->img, 0, 0);
 	mlx_do_sync(data->win->mlx);
@@ -86,8 +86,8 @@ int		main(int argc, char **argv)
 	ft_set_textures(&data, data.skin->text);
 	mlx_loop_hook(win.mlx, ft_render_next_frame, &data);
 	mlx_hook(win.win, 2, (1L << 0), &ft_button_press, &data);
+	mlx_hook(data.win->win, 17, 0L, &ft_close, &data);
 	mlx_loop(win.mlx);
-	// ft_free();
 	free(data.input);
 	return (0);
 }

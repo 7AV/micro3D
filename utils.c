@@ -6,34 +6,56 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 13:38:00 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/24 09:53:14 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/25 20:29:12 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+int		ft_shadow(t_data *data, int color)
+{
+	int		r;
+	int		g;
+	int		b;
+	float	dark;
+
+	dark = 1 - (data->ray->dist / (SCALE * 10));
+	dark = dark < 0 ? 0 : dark;
+	r = (color / (256 * 256) % 256) * dark;
+	g = (color / 256 % 256) * dark;
+	b = (color % 256) * dark;
+	return (r * 256 * 256 + g * 256 + b);
+}
+
+void	ft_color_calc(char **opt, t_data *data)
+{
+	char	**tmp;
+
+	tmp = ft_split(opt[1], ',');
+	if (tmp[0] && tmp[1] && tmp[2]
+	&& ft_atoi(tmp[0]) >= 0 && ft_atoi(tmp[0]) <= 255
+	&& ft_atoi(tmp[1]) >= 0 && ft_atoi(tmp[1]) <= 255
+	&& ft_atoi(tmp[2]) >= 0 && ft_atoi(tmp[2]) <= 255)
+	{
+		if (*opt[0] == 'F')
+			data->skin->flo_color = (ft_atoi(tmp[0]) * 256 * 256) +
+			(ft_atoi(tmp[1]) * 256) + ft_atoi(tmp[2]);
+		if (*opt[0] == 'C')
+			data->skin->ceil_color = (ft_atoi(tmp[0]) * 256 * 256) +
+			(ft_atoi(tmp[1]) * 256) + ft_atoi(tmp[2]);
+	}
+	else
+		ft_error(ER_COLOR);
+	free(tmp);
+}
+
 float	ft_norm_angle(float ang)
 {
 	if (ang > 2 * M_PI)
-		while (ang > 2 * M_PI)
-			ang -= 2 * M_PI;
-	else if (ang < 0)
-		while (ang < 0)
-			ang += 2 * M_PI;
+		ang -= 2 * M_PI;
+	if (ang < 0)
+		ang += 2 * M_PI;
 	return (ang);
-}
-
-void	ft_move_check(t_data *data, t_plr *plr, int flag, float offset)
-{
-	if (flag)
-	{
-		if (!(data->map[(int)plr->y / SCALE][(int)plr->x / SCALE] != '1'
-		&& data->map[(int)plr->y / SCALE][(int)plr->x / SCALE] != '2'))
-			plr->x += offset * MOVE_SPEED;
-	}
-	else if (!(data->map[(int)plr->y / SCALE][(int)plr->x / SCALE] != '1'
-			&& data->map[(int)plr->y / SCALE][(int)plr->x / SCALE] != '2'))
-		plr->y += offset * MOVE_SPEED;
 }
 
 void	ft_my_pixel_put(t_data *data, int x, int y, int color)

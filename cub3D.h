@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 12:53:23 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/24 16:40:19 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/25 20:35:07 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,26 @@
 # define RAD_SCALE 10
 # define RAD_X 1
 # define RAD_Y 1
-# define PLAYER_FOV_2 M_PI / 2.7 / 2
+# define PLAYER_FOV_2 M_PI / 5.4
 # define MOVE_SPEED 100
 
-# define ER_ARG			0	//неверный аргумент при запуске main
-# define ER_FD			1	//открытие файла
-# define ER_MALLOC		2	//маллок
-# define ER_BAD_OPT		3	//неверные ключи в инпуте
-# define ER_BAD_RES		4	//совпадение разрешений
-# define ER_PATH		5	//путь к текстурам
-# define ER_BAD_TEXT	6	//текстуры не открываются
-# define ER_DUP_TEXT	7	//повтор текстур
-# define ER_COLOR		8	//дурной тонr
-# define ER_MAP			9	//невалидная карта
-# define ER_PLR			10	//ошибки игрока
-# define ER_SCRNSHT		11	//ошибка скриншота
+# define ER_ARG			0
+# define ER_FD			1
+# define ER_MALLOC		2
+# define ER_BAD_OPT		3
+# define ER_BAD_RES		4
+# define ER_PATH		5
+# define ER_BAD_TEXT	6
+# define ER_DUP_TEXT	7
+# define ER_COLOR		8
+# define ER_MAP			9
+# define ER_PLR			10
+# define ER_SCRNSHT		11
 
 typedef struct		s_point
 {
-	int				x;
-	int				y;
+	int			x;
+	int			y;
 }					t_point;
 
 typedef struct		s_spr
@@ -124,6 +124,17 @@ typedef struct		s_data
 	float			*save;
 }					t_data;
 
+int					ft_close(t_data *data);
+void				ft_input_parse(t_data *data);
+void				ft_read_input(char *argv, t_data *data);
+void				ft_input_build(t_list **input_head, t_data *data);
+void				ft_color_calc(char **opt, t_data *data);
+int					ft_shadow(t_data *data, int color);
+void				ft_path_check(t_skin *skin);
+int					ft_check_tool(int x, int y, t_data *data);
+void				ft_map_check(t_data *data);
+void				ft_opt_check(t_data *data);
+void				ft_screenshot(t_data *data);
 void				ft_error(char code);
 void				ft_floor(t_data *data);
 float				ft_norm_angle(float ang);

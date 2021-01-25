@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 13:39:31 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 17:03:22 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/25 19:16:08 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_error(char code)
 	code == ER_DUP_TEXT ? write(2, "Duplicate texture.", 19) : 0;
 	code == ER_COLOR ? write(2, "Invalid colour.", 16) : 0;
 	code == ER_MAP ? write(2, "Invalid map.", 13) : 0;
-	code == ER_PLR ? write(2, "Too many players.", 18) : 0;
+	code == ER_PLR ? write(2, "Invalid player.", 16) : 0;
 	code == ER_SCRNSHT ? write(2, "Failed to create screenshot.", 29) : 0;
 	ft_putendl_fd(" Exiting cub3D... Bye!", 2);
 	exit(0);

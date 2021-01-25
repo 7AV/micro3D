@@ -6,104 +6,11 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 19:55:47 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/24 16:45:30 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/25 20:28:36 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// void	ft_map_check(int y, int x, t_data *data)
-// {
-// 	// (void)data;
-// 	if (data->map[y][x] == ' ')
-// 		ft_error(ER_MAP);
-// 	else
-// 		if (data->map[y][x] != '1')
-// 		{
-// 			ft_map_check(y, x + 1, data);
-// 			ft_map_check(y - 1, x, data);
-// 		}
-// }
-
-void		ft_map_check(t_data *data)
-{
-	int		x;
-	int		y;
-
-	x = 0;
-	y = 0;
-	data->map_width = ft_strlen(data->map[0]);
-	while (y < data->map_height)
-	{
-		while (x < data->map_width )
-		{
-			if (data->map[y][x] != '1' && y == 0)
-				ft_error(ER_MAP);
-			else if (data->map[y][x] != '1' && y == data->map_height - 1)
-				ft_error(ER_MAP);
-			else if (data->map[y][x] != '1' && x == 0)
-				ft_error(ER_MAP);
-			else if (data->map[y][x] != '1' && x == data->map_width - 1)
-				ft_error(ER_MAP);
-			x++;
-		}
-		x = 0;
-		y++;
-	}
-}
-
-void	ft_path_check(t_skin *skin)
-{
-	int		ind;
-	int		fd;
-	int		x;
-
-	ind = -1;
-	while (++ind < 5)
-		(fd = open(skin->path[ind], O_RDONLY)) < 0 ?
-		ft_error(ER_FD) : close(fd);
-	x = -1;
-	ind = -1;
-	while (x++ < 5)
-	{
-		while (ind++ < 5)
-			if (ft_strncmp(skin->path[x], skin->path[ind],
-			ft_strlen(skin->path[x])) == 0 && (ind != x))
-				ft_error(ER_DUP_TEXT);
-		ind = -1;
-	}
-}
-
-void	ft_opt_check(t_data *data)
-{
-	((data->skin->ceil_color == -1) || (data->skin->flo_color == -1)
-	|| data->win->width == -1 || data->win->height == -1
-	|| !data->skin->path[1] || !data->skin->path[2]
-	|| !data->skin->path[3] || !data->skin->path[4]
-	|| !data->skin->path[0]) ? ft_error(ER_BAD_OPT) : 0;
-}
-
-void	ft_color_calc(char **opt, t_data *data)
-{
-	char	**tmp;
-
-	tmp = ft_split(opt[1], ',');
-	if (tmp[0] && tmp[1] && tmp[2]
-	&& ft_atoi(tmp[0]) >= 0 && ft_atoi(tmp[0]) <= 255
-	&& ft_atoi(tmp[1]) >= 0 && ft_atoi(tmp[1]) <= 255
-	&& ft_atoi(tmp[2]) >= 0 && ft_atoi(tmp[2]) <= 255)
-	{
-		if (*opt[0] == 'F')
-			data->skin->flo_color = (ft_atoi(tmp[0]) * 256 * 256) +
-			(ft_atoi(tmp[1]) * 256) + ft_atoi(tmp[2]);
-		if (*opt[0] == 'C')
-			data->skin->ceil_color = (ft_atoi(tmp[0]) * 256 * 256) +
-			(ft_atoi(tmp[1]) * 256) + ft_atoi(tmp[2]);
-	}
-	else
-		ft_error(ER_COLOR);
-	free(tmp);
-}
 
 void	ft_color_options(char **opt, t_data *data)
 {
@@ -119,7 +26,7 @@ void	ft_color_options(char **opt, t_data *data)
 	}
 }
 
-void	ft_texture_options(char **opt, t_data *data, t_skin *skin)
+void	ft_texture_options(char **opt, t_skin *skin)
 {
 	if (ft_strncmp(opt[0], "S", 2) == 0)
 	{
@@ -146,7 +53,6 @@ void	ft_texture_options(char **opt, t_data *data, t_skin *skin)
 		(skin->path[4] != NULL) ? ft_error(ER_BAD_OPT) : 0;
 		skin->path[4] = ft_strdup(opt[1]);
 	}
-	ft_color_options(opt, data);
 }
 
 void	ft_window_options(char **opt, t_win *win)
@@ -174,64 +80,35 @@ void	ft_input_parse(t_data *data)
 	flag = 0;
 	while (data->input[++ind])
 	{
+		while (data->input[ind][count] == ' ')
+			count++;
+		if (!flag && (data->input[ind][count] == '1'))
+		{
+			data->map = &data->input[ind];
+			flag = 1;
+			break ;
+		}
+		count = 0;
 		tmp = ft_split(data->input[ind], ' ');
 		while (tmp[count])
 			count++;
 		if (count == 3)
 			ft_window_options(tmp, data->win);
 		else if (count == 2)
-			ft_texture_options(tmp, data, data->skin);
-		else if (count == 1 && (tmp[0][0] == '1' || tmp[0][0] == ' '))
 		{
-			if (!flag)
-			{
-				data->map = &data->input[ind];
-				flag = 1;
-			}
-			data->map_height += 1;
+			ft_texture_options(tmp, data->skin);
+			ft_color_options(tmp, data);
 		}
 		else if (count == 1 && tmp[0][0])
 			ft_error(ER_MAP);
-		count = 0;
-		free(tmp);
 	}
-	ft_map_check(data);
-	ft_opt_check(data);
-	ft_path_check(data->skin);
-}
-
-void	ft_input_build(t_list **input_head, t_data *data)
-{
-	int		list_count;
-	int		ind;
-	t_list	*tmp;
-
+	if (!flag)
+		ft_error(ER_MAP);
 	ind = 0;
-	list_count = ft_lstsize(*input_head);
-	!(data->input = ft_calloc(list_count + 1, sizeof(char *))) ?
-	ft_error(ER_MALLOC) : 0;
-	tmp = *input_head;
-	while (tmp)
-	{
-		data->input[ind] = tmp->content;
-		tmp = tmp->next;
+	while (data->map[ind])
 		ind++;
-	}
-}
-
-void	ft_read_input(char *argv, t_data *data)
-{
-	int		fd;
-	char	*line;
-	t_list	*input_head;
-
-	(fd = open(argv, O_RDONLY)) <= 0 ? ft_error(ER_FD) : 0;
-	line = NULL;
-	input_head = NULL;
-	while (get_next_line(fd, &line) > 0)
-		ft_lstadd_back(&input_head, ft_lstnew(line));
-	ft_lstadd_back(&input_head, ft_lstnew(line));
-	close(fd);
-	ft_input_build(&input_head, data);
-	ft_input_parse(data);
+	data->map_height = ind;
+	ft_opt_check(data);
+	ft_map_check(data);
+	ft_path_check(data->skin);
 }

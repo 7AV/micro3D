@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 16:30:07 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/24 11:47:40 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/25 20:22:34 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_put_sprite(t_data *data, t_spr *spr, t_point *pnt, float scale)
 		{
 			if (pnt->x + y < data->win->width && pnt->x + y >= 0
 			&& pnt->y + x >= 0 && pnt->y + x < data->win->height
-			&& data->save[pnt->x + y] > spr->dist)
+			&& data->save[(int)pnt->x + y] > spr->dist)
 			{
 				color = (data->skin->text[0]->addr
 				+ (((int)(x * scale) * data->skin->text[0] ->line_len)

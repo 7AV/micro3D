@@ -6,13 +6,78 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 08:42:10 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/24 08:43:32 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/25 20:25:40 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// void	ft_screenshot(data)
-// {
-	
-// }
+#include "cub3d.h"
+
+static int	get_color(t_data *data, int x, int y)
+{
+	char	*dst;
+	int		color;
+
+	dst = data->win->addr + (y * data->win->line_len
+	+ x * (data->win->bpp / 8));
+	color = *(int*)dst;
+	return (color);
+}
+
+static void	int_to_char(int i, unsigned char *arr)
+{
+	arr[0] = (unsigned char)(i);
+	arr[1] = (unsigned char)(i >> 8);
+	arr[2] = (unsigned char)(i >> 16);
+	arr[3] = (unsigned char)(i >> 24);
+}
+
+static void	print_color(t_data *data, int fd)
+{
+	int		i;
+	int		j;
+	int		color;
+
+	i = data->win->height - 1;
+	while (0 <= i)
+	{
+		j = 0;
+		while (j < data->win->width)
+		{
+			color = get_color(data, j, i);
+			write(fd, &color, 3);
+			j++;
+		}
+		i--;
+	}
+}
+
+void		ft_screenshot(t_data *data)
+{
+	int				fd;
+	int				filesize;
+	unsigned char	arr[54];
+	int				count;
+
+	filesize = ((data->win->height * data->win->width)
+			* 4) + 54;
+	((fd = open("screenshot.bmp", O_WRONLY | O_CREAT | O_TRUNC |
+		O_APPEND, 0666)) < 0) ? ft_error(ER_SCRNSHT) : 0;
+	count = 0;
+	while (count < 54)
+		arr[count++] = 0;
+	arr[0] = 'B';
+	arr[1] = 'M';
+	int_to_char(filesize, &arr[2]);
+	arr[10] = (unsigned char)(54);
+	arr[14] = (unsigned char)(40);
+	int_to_char(data->win->width, &arr[18]);
+	int_to_char(data->win->height, &arr[22]);
+	arr[26] = (unsigned char)(1);
+	arr[28] = (unsigned char)(24);
+	write(fd, arr, 54);
+	print_color(data, fd);
+	close(fd);
+	exit(0);
+}

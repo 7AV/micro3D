@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fov_put.c                                          :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 11:51:55 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/23 14:16:49 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/25 20:32:37 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-int		ft_shadow(t_data *data, int color)
-{
-	int		r;
-	int		g;
-	int		b;
-	float	dark;
-	
-	dark = 1 - (data->ray->dist / (SCALE * 10));
-	dark = dark < 0 ? 0 : dark;
-	r = (color / (256 * 256) % 256) * dark;
-	g = (color / 256 % 256) * dark;
-	b = (color % 256) * dark;
-	return (r * 256 * 256 + g * 256 + b);
-}
 
 void	ft_text_mapping(t_data *data, t_text **text, int column, int y)
 {
@@ -33,7 +19,7 @@ void	ft_text_mapping(t_data *data, t_text **text, int column, int y)
 	int		ind;
 	float	y_pos;
 	int		color;
-	
+
 	ind = data->ray->dir_x;
 	column_height = (SCALE * data->win->height) / data->ray->dist;
 	text_step = (float)text[ind]->height / (float)column_height;
@@ -42,7 +28,6 @@ void	ft_text_mapping(t_data *data, t_text **text, int column, int y)
 	color = *(unsigned int *)(text[ind]->addr
 	+ (((int)y_pos * text[ind]->line_len) + ((int)data->ray->offset
 	* (text[ind]->bpp / 8))));
-
 	ft_my_pixel_put(data, column, y, ft_shadow(data, color));
 }
 
@@ -67,10 +52,10 @@ void	ft_put_column(t_data *data, int column)
 	}
 }
 
-float		*ft_init_save(t_data *data)
+float	*ft_init_save(t_data *data)
 {
-	int	i;
-	
+	int		i;
+
 	i = 0;
 	if (data->save == NULL)
 	{
@@ -85,7 +70,7 @@ float		*ft_init_save(t_data *data)
 			i++;
 		}
 	}
-	return(data->save);
+	return (data->save);
 }
 
 int		ft_field_of_view_put(t_data *data)
@@ -94,7 +79,7 @@ int		ft_field_of_view_put(t_data *data)
 	int		column;
 	float	column_angle;
 	t_ray	ray;
-	
+
 	ft_init_save(data);
 	data->ray = &ray;
 	column = 0;

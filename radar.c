@@ -6,13 +6,13 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 13:32:06 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/24 09:58:56 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/25 20:30:08 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_scale(t_data *data, int x, int y)
+void	ft_scale(t_data *data, int x, int y, int color)
 {
 	int		a;
 	int		b;
@@ -25,28 +25,7 @@ void	ft_scale(t_data *data, int x, int y)
 	{
 		while (x < a)
 		{
-			ft_my_pixel_put(data, x, y, 0x666666);
-			x++;
-		}
-		x = x - RAD_SCALE;
-		y++;
-	}
-}
-
-void	ft_scale_2(t_data *data, int x, int y)
-{
-	int	a;
-	int	b;
-
-	a = (x + 1) * RAD_SCALE;
-	b = (y + 1) * RAD_SCALE;
-	x = x * RAD_SCALE;
-	y = y * RAD_SCALE;
-	while (y < b)
-	{
-		while (x < a)
-		{
-			ft_my_pixel_put(data, x, y, 0xFFFFFF);
+			ft_my_pixel_put(data, x, y, color);
 			x++;
 		}
 		x = x - RAD_SCALE;
@@ -74,10 +53,7 @@ void	ft_put_sprites(t_data *data)
 		while (y < b)
 		{
 			while (x < a)
-			{
-				ft_my_pixel_put(data, x, y, 0xDC143C);
-				x++;
-			}
+				ft_my_pixel_put(data, x++, y, 0xDC143C);
 			x = x - RAD_SCALE;
 			y++;
 		}
@@ -98,9 +74,9 @@ int		ft_put_wall(t_data *data, char **map)
 		while ((map[y])[x])
 		{
 			if ((map[y])[x] == '1')
-				ft_scale(data, x + RAD_X, y + RAD_Y);
+				ft_scale(data, x + RAD_X, y + RAD_Y, 0x666666);
 			else if ((map[y])[x] != ' ')
-				ft_scale_2(data, x + RAD_X, y + RAD_Y);
+				ft_scale(data, x + RAD_X, y + RAD_Y, 0xFFFFFF);
 			x++;
 		}
 		y++;
