@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 13:32:06 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/25 20:30:08 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/27 13:27:34 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,10 @@ void	ft_put_player(t_data *data)
 
 int		ft_put_radar(t_data *data)
 {
-	ft_put_wall(data, data->map);
-	ft_put_sprites(data);
-	ft_put_player(data);
+	if (!((data->win->height < 500) || (data->win->width < 500)))
+	{
+		ft_put_wall(data, data->map);
+		ft_put_player(data);
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 10:31:57 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/25 20:34:32 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/27 12:24:26 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,18 @@ void	ft_init_str(t_data *data, t_win *win, t_skin *skin, t_text *text)
 
 	win->width = -1;
 	win->height = -1;
-	ind = -1;
-	while (++ind < 5)
+	ind = 0;
+	while (ind < 5)
+	{
 		skin->path[ind] = NULL;
-	while (ind-- > 0)
+		ind++;
+	}
+	ind = 0;
+	while (ind < 5)
+	{
 		skin->text[ind] = &text[ind];
+		ind++;
+	}
 	skin->ceil_color = -1;
 	skin->flo_color = -1;
 	data->win = win;
@@ -74,20 +81,20 @@ int		main(int argc, char **argv)
 	t_plr		plr;
 	t_text		text[4];
 
+	data.save = NULL;
+	data.plr = &plr;
 	data.scrn = (argc == 3 && !ft_strncmp(argv[2], "--save", 6)) ? 1 : 0;
 	argc < 2 || argc > 3 || (argc == 3 && !data.scrn) ? ft_error(ER_ARG) : 0;
 	ft_init_str(&data, &win, &skin, &text[0]);
-	data.plr = &plr;
 	ft_read_input(argv[1], &data);
 	ft_init_win(&win);
 	ft_set_player(data.map, &data, &plr);
 	ft_set_sprite(&data, data.map);
-	data.save = NULL;
 	ft_set_textures(&data, data.skin->text);
 	mlx_loop_hook(win.mlx, ft_render_next_frame, &data);
 	mlx_hook(win.win, 2, (1L << 0), &ft_button_press, &data);
-	mlx_hook(data.win->win, 17, 0L, &ft_close, &data);
+	mlx_hook(win.win, 17, 0L, &ft_close, &data);
 	mlx_loop(win.mlx);
-	free(data.input);
+	ft_free_data(&data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 14:05:24 by sbudding          #+#    #+#             */
-/*   Updated: 2020/11/04 14:27:57 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/27 14:12:58 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 **	’content’ is initialized with the value of the parameter ’content’.
 **	The variable ’next’ is initialized to NULL.
 */
+
 #include "libft.h"
 
 t_list				*ft_lstnew(void *content)

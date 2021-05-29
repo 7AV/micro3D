@@ -6,15 +6,13 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 08:42:10 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/25 20:25:40 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/27 14:32:13 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-#include "cub3d.h"
-
-static int	get_color(t_data *data, int x, int y)
+static int	ft_get_color(t_data *data, int x, int y)
 {
 	char	*dst;
 	int		color;
@@ -25,7 +23,7 @@ static int	get_color(t_data *data, int x, int y)
 	return (color);
 }
 
-static void	int_to_char(int i, unsigned char *arr)
+static void	ft_itoc(int i, unsigned char *arr)
 {
 	arr[0] = (unsigned char)(i);
 	arr[1] = (unsigned char)(i >> 8);
@@ -33,23 +31,23 @@ static void	int_to_char(int i, unsigned char *arr)
 	arr[3] = (unsigned char)(i >> 24);
 }
 
-static void	print_color(t_data *data, int fd)
+static void	ft_put_color(t_data *data, int fd)
 {
-	int		i;
-	int		j;
+	int		x;
+	int		y;
 	int		color;
 
-	i = data->win->height - 1;
-	while (0 <= i)
+	y = data->win->height - 1;
+	while (0 <= y)
 	{
-		j = 0;
-		while (j < data->win->width)
+		x = 0;
+		while (x < data->win->width)
 		{
-			color = get_color(data, j, i);
+			color = ft_get_color(data, x, y);
 			write(fd, &color, 3);
-			j++;
+			x++;
 		}
-		i--;
+		y--;
 	}
 }
 
@@ -69,15 +67,15 @@ void		ft_screenshot(t_data *data)
 		arr[count++] = 0;
 	arr[0] = 'B';
 	arr[1] = 'M';
-	int_to_char(filesize, &arr[2]);
+	ft_itoc(filesize, &arr[2]);
 	arr[10] = (unsigned char)(54);
 	arr[14] = (unsigned char)(40);
-	int_to_char(data->win->width, &arr[18]);
-	int_to_char(data->win->height, &arr[22]);
+	ft_itoc(data->win->width, &arr[18]);
+	ft_itoc(data->win->height, &arr[22]);
 	arr[26] = (unsigned char)(1);
 	arr[28] = (unsigned char)(24);
 	write(fd, arr, 54);
-	print_color(data, fd);
+	ft_put_color(data, fd);
 	close(fd);
 	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 16:30:07 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/25 20:22:34 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/27 14:45:39 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	ft_put_sprite(t_data *data, t_spr *spr, t_point *pnt, float scale)
 					< data->win->height && pnt->y + x > 0 && pnt->x + y > 0
 					&& (*(unsigned int *)color & 0xFFFFFF) != 0)
 					ft_my_pixel_put(data, pnt->x + y, pnt->y + x,
-					*(unsigned int *)color);
+					ft_shadow(spr->dist, *(unsigned int *)color));
 			}
 		}
 	}

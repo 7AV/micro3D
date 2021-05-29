@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 17:30:04 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/25 17:32:46 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/27 12:26:59 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ t_spr	*ft_sprnew(float x, float y)
 {
 	t_spr	*spr;
 
-	spr = (t_spr*)malloc(sizeof(t_spr));
+	(spr = (t_spr*)malloc(sizeof(t_spr))) ?
+	0 : ft_error(ER_MALLOC);
 	spr->x = (x + 0.5) * SCALE;
 	spr->y = (y + 0.5) * SCALE;
 	spr->dir = 0;

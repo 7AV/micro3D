@@ -6,20 +6,20 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 13:38:00 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/25 20:29:12 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/27 13:21:06 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_shadow(t_data *data, int color)
+int		ft_shadow(float dist, int color)
 {
 	int		r;
 	int		g;
 	int		b;
 	float	dark;
 
-	dark = 1 - (data->ray->dist / (SCALE * 10));
+	dark = 1 - (dist / (SCALE * 10));
 	dark = dark < 0 ? 0 : dark;
 	r = (color / (256 * 256) % 256) * dark;
 	g = (color / 256 % 256) * dark;
@@ -46,14 +46,14 @@ void	ft_color_calc(char **opt, t_data *data)
 	}
 	else
 		ft_error(ER_COLOR);
-	free(tmp);
+	ft_free(tmp);
 }
 
 float	ft_norm_angle(float ang)
 {
-	if (ang > 2 * M_PI)
+	while (ang > 2 * M_PI)
 		ang -= 2 * M_PI;
-	if (ang < 0)
+	while (ang < 0)
 		ang += 2 * M_PI;
 	return (ang);
 }
@@ -65,4 +65,14 @@ void	ft_my_pixel_put(t_data *data, int x, int y, int color)
 	dst = data->win->addr + (y * data->win->line_len
 	+ x * (data->win->bpp / 8));
 	*(unsigned int*)dst = color;
+}
+
+void	ft_map_height(t_data *data)
+{
+	int		ind;
+
+	ind = 0;
+	while (data->map[ind])
+		ind++;
+	data->map_height = ind;
 }

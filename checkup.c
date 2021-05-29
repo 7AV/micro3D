@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 20:00:12 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/25 20:26:33 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/26 15:30:54 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,19 @@ void	ft_path_check(t_skin *skin)
 	while (++ind < 5)
 		(fd = open(skin->path[ind], O_RDONLY)) < 0 ?
 		ft_error(ER_FD) : close(fd);
-	x = -1;
-	ind = -1;
-	while (x++ < 5)
+	x = 0;
+	ind = 0;
+	while (x < 5)
 	{
-		while (ind++ < 5)
+		while (ind < 5)
+		{
 			if (ft_strncmp(skin->path[x], skin->path[ind],
 			ft_strlen(skin->path[x])) == 0 && (ind != x))
 				ft_error(ER_DUP_TEXT);
-		ind = -1;
+			ind++;
+		}
+		x++;
+		ind = 0;
 	}
 }
 
@@ -70,6 +74,7 @@ void	ft_map_check(t_data *data)
 	x = 0;
 	y = 0;
 	plr = 0;
+	ft_map_height(data);
 	while (y < data->map_height)
 	{
 		data->map_width = ft_strlen(data->map[y]);
@@ -87,11 +92,13 @@ void	ft_map_check(t_data *data)
 	plr != 1 ? ft_error(ER_PLR) : 0;
 }
 
-void	ft_opt_check(t_data *data)
+void	ft_checkup(t_data *data)
 {
 	((data->skin->ceil_color == -1) || (data->skin->flo_color == -1)
 	|| data->win->width == -1 || data->win->height == -1
 	|| !data->skin->path[1] || !data->skin->path[2]
 	|| !data->skin->path[3] || !data->skin->path[4]
 	|| !data->skin->path[0]) ? ft_error(ER_BAD_OPT) : 0;
+	ft_map_check(data);
+	ft_path_check(data->skin);
 }

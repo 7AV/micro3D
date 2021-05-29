@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 12:53:23 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/25 20:35:07 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/27 14:32:28 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <fcntl.h>
 # define SCALE 500
 # define RADAR 1
-# define RAD_SCALE 10
+# define RAD_SCALE 5
 # define RAD_X 1
 # define RAD_Y 1
 # define PLAYER_FOV_2 M_PI / 5.4
@@ -124,16 +124,18 @@ typedef struct		s_data
 	float			*save;
 }					t_data;
 
+void				ft_map_height(t_data *data);
+void				ft_free_data(t_data *data);
+void				ft_free(char **trash);
 int					ft_close(t_data *data);
 void				ft_input_parse(t_data *data);
-void				ft_read_input(char *argv, t_data *data);
 void				ft_input_build(t_list **input_head, t_data *data);
 void				ft_color_calc(char **opt, t_data *data);
-int					ft_shadow(t_data *data, int color);
+int					ft_shadow(float dist, int color);
 void				ft_path_check(t_skin *skin);
 int					ft_check_tool(int x, int y, t_data *data);
 void				ft_map_check(t_data *data);
-void				ft_opt_check(t_data *data);
+void				ft_checkup(t_data *data);
 void				ft_screenshot(t_data *data);
 void				ft_error(char code);
 void				ft_floor(t_data *data);

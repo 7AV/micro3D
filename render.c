@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 11:51:55 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/25 20:32:37 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/27 12:21:22 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_text_mapping(t_data *data, t_text **text, int column, int y)
 	color = *(unsigned int *)(text[ind]->addr
 	+ (((int)y_pos * text[ind]->line_len) + ((int)data->ray->offset
 	* (text[ind]->bpp / 8))));
-	ft_my_pixel_put(data, column, y, ft_shadow(data, color));
+	ft_my_pixel_put(data, column, y, ft_shadow(data->ray->dist, color));
 }
 
 void	ft_put_column(t_data *data, int column)
@@ -93,6 +93,6 @@ int		ft_field_of_view_put(t_data *data)
 		ft_put_column(data, column);
 		column++;
 	}
-	ft_sprites(data);
+	data->spr ? ft_sprites(data) : 0;
 	return (0);
 }

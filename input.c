@@ -6,7 +6,7 @@
 /*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 20:18:43 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/25 20:32:03 by sbudding         ###   ########.fr       */
+/*   Updated: 2021/01/27 11:54:22 by sbudding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,18 @@ void	ft_input_build(t_list **input_head, t_data *data)
 	t_list	*tmp;
 
 	ind = 0;
-	list_count = ft_lstsize(*input_head);
-	!(data->input = ft_calloc(list_count + 1, sizeof(char *))) ?
-	ft_error(ER_MALLOC) : 0;
 	tmp = *input_head;
+	list_count = ft_lstsize(tmp);
+	(data->input = ft_calloc(list_count + 1, sizeof(char*))) ?
+	0 : ft_error(ER_MALLOC);
 	while (tmp)
 	{
-		data->input[ind] = tmp->content;
+		(data->input[ind] = ft_strdup(tmp->content)) ?
+		0 : ft_error(ER_MALLOC);
 		tmp = tmp->next;
 		ind++;
 	}
+	data->input[ind] = 0;
 }
 
 void	ft_read_input(char *argv, t_data *data)
@@ -46,4 +48,5 @@ void	ft_read_input(char *argv, t_data *data)
 	close(fd);
 	ft_input_build(&input_head, data);
 	ft_input_parse(data);
+	ft_lstclear(&input_head, &free);
 }
