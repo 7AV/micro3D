@@ -1,5 +1,5 @@
 # among3D
- Dynamic view inside a maze using ray-casting method. Inspired by the Wolfenstein 3D and Among Us.
+ Dynamic view inside a maze using ray-casting method. Inspired by the Among Us and the Wolfenstein 3D.
  
 <img align="left"  src="./img/logo.png"/>
 
