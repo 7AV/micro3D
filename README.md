@@ -25,7 +25,7 @@ Simple shell implementation, that supports:
 ## Installation
 
 ```bash
-git clone https://github.com/anvv5/micro3D.git ; cd micro3D ; make ; ./micro3D map/default.map ;
+git clone https://github.com/anvv5/micro3D.git ; cd among3D ; make ; ./among3D default.map ;
 
 ```
 
