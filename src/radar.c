@@ -62,7 +62,7 @@ int		ft_put_wall(t_data *data, char **map)
 		while ((map[y])[x])
 		{
 			if ((map[y])[x] == '1')
-				ft_scale(data, x + RAD_X, y + RAD_Y, 0x666666);
+				ft_scale(data, x + RAD_X, y + RAD_Y, 0x000000);
 			else if ((map[y])[x] != ' ')
 				ft_scale(data, x + RAD_X, y + RAD_Y, 0xFFFFFF);
 			x++;

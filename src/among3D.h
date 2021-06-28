@@ -9,8 +9,8 @@
 # include <math.h>
 # include <fcntl.h>
 # define SCALE 500
-# define RADAR 0
-# define RAD_SCALE 5
+# define RADAR 1
+# define RAD_SCALE 10
 # define RAD_X 1
 # define RAD_Y 1
 # define PLAYER_FOV_2 M_PI / 5.4
