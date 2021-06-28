@@ -1,17 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/23 12:53:23 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/27 14:32:28 by sbudding         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef MICRO3D_H
+# define MICRO3D_H
 
 # include <stdio.h>
 
@@ -21,7 +9,7 @@
 # include <math.h>
 # include <fcntl.h>
 # define SCALE 500
-# define RADAR 1
+# define RADAR 0
 # define RAD_SCALE 5
 # define RAD_X 1
 # define RAD_Y 1

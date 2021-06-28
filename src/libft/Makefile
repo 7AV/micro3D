@@ -65,10 +65,13 @@ BONUS = $(BONUS_SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ) 
-		ar rcs $(NAME) $(OBJ)
+	@ar rcs $(NAME) $(OBJ)
+
+%.o:%.c libft.h
+	@gcc $(FLAG) -c $< -o $@
 
 bonus: $(OBJ) $(BONUS)
-		ar rcs $(NAME) $(OBJ) $(BONUS)
+	@ar rcs $(NAME) $(OBJ) $(BONUS)
 
 clean:
 	rm -f $(OBJ) $(BONUS)

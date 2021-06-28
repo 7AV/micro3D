@@ -1,0 +1,23 @@
+R 1200 800
+
+C 080,070,070
+F 038,038,038
+
+SO ./src/textures/2_souht.xpm
+NO ./src/textures/1_north.xpm
+WE ./src/textures/3_west.xpm
+EA ./src/textures/4_east.xpm
+
+S ./src/textures/0_sprite.xpm
+
+  111
+111S1111
+10100001
+10000101
+10000101
+10002001
+12001111
+11000001
+10200001
+10000001
+11111111

@@ -1,16 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   checkup.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sbudding <sbudding@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/25 20:00:12 by sbudding          #+#    #+#             */
-/*   Updated: 2021/01/26 15:30:54 by sbudding         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "cub3d.h"
+#include "micro3D.h"
 
 void	ft_move_check(t_data *data, t_plr *plr, int flag, float offset)
 {
@@ -32,7 +20,7 @@ void	ft_path_check(t_skin *skin)
 	int		x;
 
 	ind = -1;
-	while (++ind < 5)
+	while (++ind < 5) 
 		(fd = open(skin->path[ind], O_RDONLY)) < 0 ?
 		ft_error(ER_FD) : close(fd);
 	x = 0;
