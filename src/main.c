@@ -1,4 +1,4 @@
-#include "micro3D.h"
+#include "among3D.h"
 
 void	ft_set_textures(t_data *data, t_text **text)
 {
@@ -55,7 +55,7 @@ void	ft_init_str(t_data *data, t_win *win, t_skin *skin, t_text *text)
 void	ft_init_win(t_win *win)
 {
 	win->mlx = mlx_init();
-	win->win = mlx_new_window(win->mlx, win->width, win->height, "micro3D");
+	win->win = mlx_new_window(win->mlx, win->width, win->height, "among3D");
 	win->img = mlx_new_image(win->mlx, win->width, win->height);
 	win->addr = mlx_get_data_addr(win->img, &win->bpp,
 	&win->line_len, &win->end);

@@ -1,4 +1,4 @@
-#include "micro3D.h"
+#include "among3D.h"
 
 int		ft_shadow(float dist, int color)
 {

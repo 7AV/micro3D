@@ -1,4 +1,4 @@
-NAME = micro3D
+NAME = among3D
 
 FLAGS = -Wall -Wextra -Werror
 
@@ -27,7 +27,7 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT) $(GNL) $(LIBMLX) src/micro3d.h
+$(NAME): $(OBJ) $(LIBFT) $(GNL) $(LIBMLX) src/among3d.h
 	@gcc libft.a gnl.a libmlx.a -framework OpenGL -framework Appkit $(OBJ) -o $(NAME)
 	@echo "\033[0;32mSuccess: micro3D instaled!\033[0m"
 
@@ -43,7 +43,7 @@ $(LIBMLX):
 	@$(MAKE) -C ./src/mlx
 	@cp src/mlx/libmlx.a .
 
-%.o:%.c src/micro3d.h
+%.o:%.c src/among3d.h
 	@gcc $(FLAGS) -I mlx -c $< -o $@
 
 run: $(NAME)

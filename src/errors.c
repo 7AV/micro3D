@@ -1,4 +1,4 @@
-#include "micro3D.h"
+#include "among3D.h"
 
 void	ft_error(char code)
 {
@@ -15,6 +15,6 @@ void	ft_error(char code)
 	code == ER_MAP ? write(2, "Invalid map.", 13) : 0;
 	code == ER_PLR ? write(2, "Invalid player.", 16) : 0;
 	code == ER_SCRNSHT ? write(2, "Failed to create screenshot.", 29) : 0;
-	ft_putendl_fd(" Exiting micro3D... Bye!", 2);
+	ft_putendl_fd(" Exiting among3D... Bye!", 2);
 	exit(0);
 }

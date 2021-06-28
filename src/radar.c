@@ -1,4 +1,4 @@
-#include "micro3D.h"
+#include "among3D.h"
 
 void	ft_scale(t_data *data, int x, int y, int color)
 {

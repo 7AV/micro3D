@@ -1,4 +1,4 @@
-#include "micro3D.h"
+#include "among3D.h"
 
 void	ft_text_mapping(t_data *data, t_text **text, int column, int y)
 {

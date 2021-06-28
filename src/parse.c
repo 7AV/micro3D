@@ -1,4 +1,4 @@
-#include "micro3D.h"
+#include "among3D.h"
 
 void	ft_texture_options(char **opt, t_skin *skin)
 {

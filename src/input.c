@@ -1,4 +1,4 @@
-#include "micro3D.h"
+#include "among3D.h"
 
 void	ft_input_build(t_list **input_head, t_data *data)
 {

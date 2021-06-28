@@ -1,4 +1,4 @@
-#include "micro3D.h"
+#include "among3D.h"
 
 t_spr	*ft_sprnew(float x, float y)
 {

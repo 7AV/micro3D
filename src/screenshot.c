@@ -1,4 +1,4 @@
-#include "micro3D.h"
+#include "among3D.h"
 
 static int	ft_get_color(t_data *data, int x, int y)
 {

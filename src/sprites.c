@@ -1,4 +1,4 @@
-#include "micro3D.h"
+#include "among3D.h"
 
 void	ft_swap_sprites(t_spr *a, t_spr *b)
 {

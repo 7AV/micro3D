@@ -1,4 +1,4 @@
-#include "micro3D.h"
+#include "among3D.h"
 
 int		ft_valid_point(t_data *data, float y, float x)
 {

@@ -1,5 +1,5 @@
-#ifndef MICRO3D_H
-# define MICRO3D_H
+#ifndef AMONG3D_H
+# define AMONG3D_H
 
 # include <stdio.h>
 
