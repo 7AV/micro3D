@@ -15,10 +15,17 @@
 
 ## Configurations
 Programm uses a path to the config file as first argument. Through config file you can:
+- Change player start position and spawning orientation.
+- Change textures of walls and sprites.
+- Change color of ceiling and floor.
+- Change sprites positions.
 - Change window size.
-- Change textures of the walls and sprites.
-- Change color of the ceiling and floor.
 - Change map.
+
+## Controls
+- **WASD** to move
+- **Left/Right** directional keys to rotate camera
+- **ESC / red cross** to quit
 
 ## Installation
 
@@ -27,7 +34,3 @@ git clone https://github.com/anvv5/among3D.git ; cd among3D ; make ; ./among3D d
 
 ```
 
-## Controls
-- **WASD** to move
-- **Left/Right** directional keys to rotate camera
-- **ESC / red cross** to quit
