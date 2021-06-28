@@ -1,7 +1,7 @@
 # micro3D
  Dynamic view inside a maze using ray-casting method. Inspired by the Wolfenstein 3D.
  
-<img align="left"  src="./img/logo.png"  />
+<img align="left"  src="./img/logo.png"/>
 
 
 

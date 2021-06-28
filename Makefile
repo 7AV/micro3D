@@ -47,10 +47,10 @@ $(LIBMLX):
 	@gcc $(FLAGS) -I mlx -c $< -o $@
 
 run: $(NAME)
-	./$(NAME) map/default.cub
+	./$(NAME) default.map
 
 scrn: $(NAME)
-	./$(NAME) map/default.cub --save
+	./$(NAME) default.map --save
 
 clean:
 	@$(MAKE) clean -C ./src/libft
