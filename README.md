@@ -27,7 +27,7 @@ Programm uses a path to the config file as first argument. Through config file y
 - **Left/Right** directional keys to rotate camera
 - **ESC / red cross** to quit
 
-## Installation
+## Quick start
 
 ```bash
 git clone https://github.com/anvv5/among3D.git ; cd among3D ; make ; ./among3D default.map ;
